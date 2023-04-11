@@ -1,0 +1,98 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Barcode and QRCode Generator",
+      "version": "1.0.0"
+    },
+    "basePath": "/",
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/generateBarcode": {
+        "post": {
+          "summary": "Generates a barcode image",
+          "description": "Takes in a barcode number and returns a base64-encoded image of the barcode.",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "The barcode number to generate.",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "barcodeNumber": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Barcode image successfully generated.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/generateQRCode": {
+        "post": {
+          "summary": "Generates a QR Code image",
+          "description": "Takes in a text string and returns a base64-encoded image of the QR Code.",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "The text string to encode in the QR Code.",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "qrcodeText": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "QR Code image successfully generated.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
